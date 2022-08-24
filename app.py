@@ -22,13 +22,14 @@ load_dotenv()
 
 # New
 database_uri = environ.get('DATABASE_URL')
+print(database_uri)
 
 if 'postgres:' in database_uri:   
     database_uri = database_uri.replace('postgres:','postgresql:')
     
 app.config.update(
     SQLALCHEMY_DATABASE_URI=database_uri,
-    SQLALCHEMY_TRACK_MODIFICATIONS=environ.get('SQLALCHEMY_TRACK_MODIFICATIONS')
+    SQLALCHEMY_TRACK_MODIFICATIONS=False
 )
 
 db = SQLAlchemy(app)
